@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper  
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<mapper namespace="team.zy.bms.dao.UserDao">  
+	<resultMap type="team.zy.bms.bean.AdminInfo" id="userResultMap">  
+	    <id property="id" column="id" />  
+	    <result property="username" column="username" />  
+	    <result property="password" column="password" /> 
+	    <result property="realname" column="realname" />
+	    <result property="gender" column="gender" />
+	    <result property="age" column="age" />
+	    <result property="address" column="address" />
+	    <result property="phone" column="phone" />
+	    <result property="mail" column="mail" /> 
+	</resultMap> 
+    <!-- 按照用户名和密码查找 -->   
+    <!-- 返回list只需配置resultmap,返回对象只需配置resulttype -->
+    <select id="selectUserByNameAndPassword" resultMap="userResultMap" >  
+        select * from admin_info t where t.username=#{adminInfo.username,jdbcType=VARCHAR} and t.password=#{adminInfo.password,jdbcType=VARCHAR}  
+    </select>
+    <!-- 增加 -->  
+    <insert id="insertadminInfoById">  
+        insert into admin_info t (t.username,t.password) values(#{adminInfo.username},#{adminInfo.password})  
+    </insert>  
+</mapper>  

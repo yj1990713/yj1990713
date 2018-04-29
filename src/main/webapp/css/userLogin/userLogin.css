@@ -1,0 +1,53 @@
+#login{
+	
+	list-style-type: none;
+	padding: 6px 0 0 0;
+	
+}
+p{
+	
+	height: 22px;
+	
+	line-height: 22px;
+	
+	padding: 4px 0 0 25px;
+	
+}
+.textbox{
+	
+	height:22px;
+	
+}
+#btn{
+	
+	text-align: center;
+	
+	
+}
+.easyui-linkbutton{
+	
+	padding: 0 10px;
+	
+	width:50px;
+	
+}
+.company{
+	
+		margin-left:300px;
+		padding: 50px;
+		color: white;
+	
+}
+#frameFirst{
+	
+	margin: 50px;
+	
+	padding-bottom: 300px;
+	
+	border-width: 10px;
+	
+	border-color: red;
+	
+	background: green;
+	
+}

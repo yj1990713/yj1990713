@@ -1,0 +1,22 @@
+.logo{
+	width: 250px;
+	hegiht:50px;
+	line-height: 50px;
+	text-align: center;
+	font-size: 20px;
+	font-weight: bold;
+	float: left;
+	color:#fff;
+}
+.logout{
+	float:right;
+	padding: 30px 15px 0 0;
+	color:#fff
+}
+a{
+	color: #fff;
+	text-decoration: none;
+}
+a:HOVER {
+	text-decoration: underline;
+}
