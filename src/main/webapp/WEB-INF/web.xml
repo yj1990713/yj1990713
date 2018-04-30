@@ -69,4 +69,10 @@
     <servlet-name>contacts</servlet-name>
     <url-pattern>/</url-pattern>
   </servlet-mapping>
+  
+  <!-- tomcat启动多个服务 -->
+  <context-param> 
+       <param-name>webAppRootKey</param-name> 
+       <param-value>BusinessManagementSystem.root</param-value> 
+     </context-param> 
 </web-app>

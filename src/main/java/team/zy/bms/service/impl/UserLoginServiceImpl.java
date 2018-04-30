@@ -6,14 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import team.zy.bms.bean.AdminInfo;
-import team.zy.bms.dao.UserDao;
-import team.zy.bms.service.UserService;
+import team.zy.bms.dao.UserLoginDao;
+import team.zy.bms.service.UserLoginService;
 
 @Service("userService")
-public class UserServiceImpl implements UserService {
+public class UserLoginServiceImpl implements UserLoginService {
 	
 	@Autowired
-	private UserDao userDao;
+	private UserLoginDao userDao;
 	
 	@Override
 	public List<AdminInfo> selectUserByNameAndPassword(AdminInfo adminInfo) throws Exception{
@@ -23,9 +23,9 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public void insertadminInfoById(AdminInfo adminInfo) throws Exception {
+	public void insertInfoById(AdminInfo adminInfo) throws Exception {
 		
-		userDao.insertadminInfoById(adminInfo);
+		userDao.insertInfoById(adminInfo);
 		
 	}
 

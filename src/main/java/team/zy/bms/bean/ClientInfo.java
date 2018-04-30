@@ -1,6 +1,6 @@
 package team.zy.bms.bean;
 
-public class AdminInfo {
+public class ClientInfo {
 	
 		private int id;
 		
@@ -20,7 +20,9 @@ public class AdminInfo {
 		
 		private String mail;
 		
-		private String role; //买家1，卖家2
+		private String role; //角色 买家1，卖家2
+		
+		private String roleid;
 
 		public int getId() {
 			return id;
@@ -100,6 +102,14 @@ public class AdminInfo {
 
 		public void setRole(String role) {
 			this.role = role;
+		}
+
+		public String getRoleid() {
+			return roleid;
+		}
+
+		public void setRoleid(String roleid) {
+			this.roleid = roleid;
 		}
 
 		

@@ -13,45 +13,36 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSONObject;
 
-import team.zy.bms.bean.AdminInfo;
+import team.zy.bms.bean.ClientInfo;
 import team.zy.bms.constants.DataConstants;
 import team.zy.bms.exception.BussinessException;
-import team.zy.bms.service.UserLoginService;
+import team.zy.bms.service.ClientManagementService;
+import team.zy.bms.tools.PageHandleUtil;
 
 
 @Controller
-@RequestMapping("userLogin")
-public class RegisterController {
+@RequestMapping("clientManagement")
+public class ClientManagementController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(RegisterController.class);
+	private static final Logger logger = LoggerFactory.getLogger(ClientManagementController.class);
 	
 	@Autowired
-	private UserLoginService userService;
-				
-	//登陆注册页面
-	@RequestMapping("")
-	public String init() {
-		
-		logger.info("enter login method...");	
-				
-		return "userLogin/login";
-		
-	}
+	private ClientManagementService clientManagementService;
 	
-	//账号密码注册
+	//添加bsp成员
 	@ResponseBody
-	@RequestMapping(value="/register",method=RequestMethod.POST)
-	public JSONObject register(AdminInfo adminInfo) throws BussinessException { 
+	@RequestMapping(value="/addClient",method=RequestMethod.POST)
+	public JSONObject addClient(ClientInfo clientInfo) throws BussinessException { 
 		
-		List<AdminInfo> listUser = null;
+		List<ClientInfo> listClient = null;
 		
 		JSONObject json = new JSONObject();
 				
-		logger.info("start register...");	
+		logger.info("start add...");	
 		
 		try {
 			
-		listUser  = userService.selectUserByNameAndPassword(adminInfo);
+			listClient  = clientManagementService.selectUserByUserName(clientInfo,PageHandleUtil.createPageBounds());
 			
 		} catch (Exception e) {
 			
@@ -62,13 +53,13 @@ public class RegisterController {
 		}
 		
 		//账号已经注册过
-		if(listUser.size()>0){
+		if(listClient.size()>0){
 			
 			json.put(DataConstants.responseCode,DataConstants.ex_failure_code);
 			
 			json.put(DataConstants.responseMsg,DataConstants.ex_failure_msg);
 			
-			logger.info("register failure...");
+			logger.info("add failure...");
 						
 			return json;
 			
@@ -77,7 +68,7 @@ public class RegisterController {
 				
 		try {
 			
-			userService.insertInfoById(adminInfo);
+			clientManagementService.insertInfoById(clientInfo);
 			
 		} catch (Exception e) {
 			
@@ -97,20 +88,18 @@ public class RegisterController {
 		
 	}
 	
-	//登陆账号密码验证
+	//查询bsp成员
 	@ResponseBody
-	@RequestMapping(value="/verify",method=RequestMethod.POST)
-	public JSONObject verify(AdminInfo adminInfo) throws BussinessException { 
+	@RequestMapping(value="/queryClient",method=RequestMethod.POST)
+	public List<ClientInfo> queryClient(ClientInfo clientInfo) throws BussinessException { 
 		
-		JSONObject json = new JSONObject();
-
-		List<AdminInfo> listUser = null;
+		List<ClientInfo> listClient = null;
 										
-		logger.info("start verify...");	
+		logger.info("start query...");	
 		
 		try {
 		
-	    listUser = userService.selectUserByNameAndPassword(adminInfo);
+			listClient = clientManagementService.selectUserByUserName(clientInfo,PageHandleUtil.createPageBounds());
 		
 		} catch (Exception e) {
 			
@@ -118,26 +107,41 @@ public class RegisterController {
 						
 			throw new BussinessException(DataConstants.db_failure_code,DataConstants.db_failure_msg);
 	}
-		if(listUser.size()>0){
 			
+		return listClient;
+		
+	}
+	
+		//修改bsp成员
+		@ResponseBody
+		@RequestMapping(value="/updateClient",method=RequestMethod.POST)
+		public JSONObject updateClient(ClientInfo clientInfo) throws BussinessException { 
+						
+			JSONObject json = new JSONObject();
+					
+			logger.info("start update...");		
+					
+			try {
+				
+				clientManagementService.updateInfoById(clientInfo);
+				
+			} catch (Exception e) {
+				
+				logger.error("插入数据异常-->"+e);
+				
+				throw new BussinessException(DataConstants.db_failure_code,DataConstants.db_failure_msg);
+				
+			}
+
 			json.put(DataConstants.responseCode,DataConstants.success_code);
 			
 			json.put(DataConstants.responseMsg,DataConstants.success_msg);
 			
-			logger.info("verify success...");		
+			logger.info("update success...");
 			
-		}else{
+			return json;
 			
-			json.put(DataConstants.responseCode,DataConstants.failure_code);
-			
-			json.put(DataConstants.responseMsg,DataConstants.failure_msg);
-			
-			logger.info("verify failure...");	
 		}
-		
-		return json;
-		
-	}
-
+	
 	
 }

@@ -2,6 +2,10 @@ package team.zy.bms.constants;
 
 public class DataConstants {
 	
+		public static final int startIndex = 1;//分页数据
+		
+		public static final int pageSize = 10;//分页数据
+	
 		public static final String responseCode = "code";
 		
 		public static final String responseMsg = "msg";	
@@ -25,5 +29,7 @@ public class DataConstants {
 		public static final String ex_failure_code = "303";//账号已经存在
 		
 		public static final String ex_failure_msg = "info already exists,failure";
+		
+		
 		
 }

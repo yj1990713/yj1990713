@@ -8,10 +8,10 @@ import org.springframework.stereotype.Repository;
 import team.zy.bms.bean.AdminInfo;
 
 @Repository
-public interface UserDao {
+public interface UserLoginDao {
 		
 	public List<AdminInfo> selectUserByNameAndPassword(@Param("adminInfo")AdminInfo adminInfo) throws Exception;
 	
-	public void insertadminInfoById(@Param("adminInfo")AdminInfo adminInfo) throws Exception;
+	public void insertInfoById(@Param("adminInfo")AdminInfo adminInfo) throws Exception;
 
 }

@@ -14,6 +14,13 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
     -->  
     <typeAliases>  
         <typeAlias type="team.zy.bms.bean.AdminInfo" alias="adminInfo"/>  
-    </typeAliases>  
+        <typeAlias type="team.zy.bms.bean.ClientInfo" alias="clientInfo"/>  
+    </typeAliases> 
+    <!-- 分页 插件 --> 
+    <plugins>  
+        <plugin interceptor="com.github.miemiedev.mybatis.paginator.OffsetLimitInterceptor">  
+            <property name="dialectClass" value="com.github.miemiedev.mybatis.paginator.dialect.OracleDialect"/>  
+        </plugin>  
+    </plugins>
 	<!-- 数据库连接用数据库连接池 -->
 </configuration>  
